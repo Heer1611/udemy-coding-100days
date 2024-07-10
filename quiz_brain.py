@@ -1,27 +1,25 @@
+import html
+
 class QuizBrain:
     def __init__(self, q_list):
-        self.question_num = 0
+        self.question_number = 0
+        self.score = 0
         self.question_list = q_list
-        self.user_score = 0
-        
-    def Still_has_q (self):
-        return self.question_num < len(self.question_list)
-           
-            
-    
-    
-    def next_q(self):
-        current_q = self.question_list[self.question_num]
-        self.question_num += 1
-        user_ans = input(f"Q.{self.question_num}: {current_q.text} (True/False): ")
-        self.check_ans(user_ans, current_q.answer)
-        
-    def check_ans(self, user_ans, correct_ans):
-        if user_ans.lower() == correct_ans.lower():
-            print("You got it right")
-            self.user_score += 1
-    
+        self.current_question = None
+
+    def still_has_questions(self):
+        return self.question_number < len(self.question_list)
+
+    def next_question(self):
+        self.current_question = self.question_list[self.question_number]
+        self.question_number += 1
+        q_text = html.unescape(self.current_question.text)
+        return f"Q.{self.question_number}: {q_text}"
+
+    def check_answer(self, user_answer):
+        correct_answer = self.current_question.answer
+        if user_answer.lower() == correct_answer.lower():
+            self.score += 1
+            return True
         else:
-            print("That's wrong")
-        print(f"The correct answer was: {correct_ans}.")
-        print(f"Your current score is {self.user_score}/{self.question_num}")
+            return False
