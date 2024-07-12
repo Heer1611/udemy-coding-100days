@@ -2,8 +2,8 @@ import requests
 from twilio.rest import Client
 
 # Configuration
-VIRTUAL_TWILIO_NUMBER = "+18445831403"  # Your virtual Twilio number
-VERIFIED_NUMBER = "+19084335187"  # Your own phone number verified with Twilio
+VIRTUAL_TWILIO_NUMBER = ""  # Your virtual Twilio number
+VERIFIED_NUMBER = ""  # Your own phone number verified with Twilio
 
 STOCK_NAME = "TSLA"
 COMPANY_NAME = "Tesla Inc"
